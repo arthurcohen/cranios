@@ -1,4 +1,5 @@
 import 'package:cranios/blocs/login_bloc.dart';
+import 'package:cranios/screens/dash.dart';
 import 'package:cranios/screens/login.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         routes: {
           '/': (context) => Login(),
-          '/main': (context) => Center(child: Text('ihu'),)
+          '/main': (context) => Dash(),
         },
         theme: Theme.of(context).copyWith(
           primaryColor: Color(0xff3694eb)
