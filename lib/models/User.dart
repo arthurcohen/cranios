@@ -1,3 +1,5 @@
+import 'package:cranios/models/Transaction.dart';
+
 class User {
   int id;
   String email;
@@ -10,10 +12,13 @@ class User {
   DateTime createdAt;
   DateTime updatedAt;
   bool admin;
+  List<Transaction> transactions;
 
-  
+  double accountBalance() => this.transactions.isEmpty ? 0 : this.transactions.map((t) => t.value).reduce((a, b) => a + b);
 
-  User(this.id, this.email, this.username, this.password, this.name, this.picture, this.city, this.participation, this.createdAt, this.updatedAt, this.admin);
+  double lastTransactionValue() => this.transactions.isEmpty ? 0 : this.transactions.last.value;
+
+  User(this.id, this.email, this.username, this.password, this.name, this.picture, this.city, this.participation, this.createdAt, this.updatedAt, this.admin, this.transactions);
 
   factory User.fromJson(Map<String, dynamic> json) {
     return User(
@@ -27,11 +32,12 @@ class User {
       json['participation'],
       json['createdAt'],
       json['updatedAt'],
-      json['admin']
+      json['admin'],
+      (json['transactions'] as List).map((t) => Transaction.fromJson(t)).toList()
     );
   }
 
-  Map<String, dynamic>toJson() => {
+  Map<String, dynamic> toJson() => {
       'id': this.id,
       'email': this.email,
       'username': this.username,
