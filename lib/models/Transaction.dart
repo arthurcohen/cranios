@@ -4,23 +4,23 @@ class Transaction {
   int id;
   double value;
   int type;
-  List<Receipt> receipts;
+  Receipt receipt;
 
-  Transaction(this.id, this.value, this.type, this.receipts);
+  Transaction(this.id, this.value, this.type, this.receipt);
 
   factory Transaction.fromJson(Map<String, dynamic> json) {
     return Transaction(
       json['id'],
-      json['value'],
+      json['value'].toDouble(),
       json['type'],
-      (json['receipts'] as List).map((r) => Receipt.fromJson(r)).toList()
+      Receipt.fromJson(json['receipt']),
     );
   }
 
   Map<String, dynamic> toJson() => {
-    'id': this.id,
-    'value': this.value,
-    'type': this.type,
-    'receipts': this.receipts.map((r) => r.toJson()),
-  };
+        'id': this.id,
+        'value': this.value,
+        'type': this.type,
+        'receipts': this.receipt.toJson(),
+      };
 }
