@@ -9,6 +9,8 @@ void main() => runApp(MaterialApp(
     ));
 
 class MyApp extends StatelessWidget {
+  final primaryColor = Color(0xff3694eb);
+
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
@@ -23,7 +25,10 @@ class MyApp extends StatelessWidget {
           '/main': (context) => Dash(),
         },
         theme: Theme.of(context).copyWith(
-          primaryColor: Color(0xff3694eb)
+          primaryColor: primaryColor,
+          appBarTheme: AppBarTheme.of(context).copyWith(color: primaryColor),
+          textTheme: Theme.of(context).textTheme.copyWith(),
+          buttonTheme: Theme.of(context).buttonTheme.copyWith(textTheme: ButtonTextTheme.normal)
         ),
       ),
     );

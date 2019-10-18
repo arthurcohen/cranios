@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:cranios/components/menu.dart';
 import 'package:cranios/models/User.dart';
 import 'package:flutter/material.dart';
@@ -17,58 +19,70 @@ class Dash extends StatelessWidget {
       appBar: AppBar(
         title: Text('Cranios'),
       ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: [
+          BottomNavigationBarItem(
+              icon: Icon(Icons.home), title: Text('Início')),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.insert_chart), title: Text('Relatórios')),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.add), title: Text('Contribuir')),
+        ],
+      ),
       body: Container(
-        padding: EdgeInsets.only(top: 10),
+        padding: EdgeInsets.only(top: 10, left: 10, right: 10),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            Container(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            Expanded(
+              flex: 1,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
-                  Expanded(
-                    flex: 1,
-                    child: CircleAvatar(
-                      backgroundColor: Colors.blue,
-                      child: Text('A'),
-                    ),
+                  CircleAvatar(
+                    radius: 30,
+                    backgroundColor: Theme.of(context).primaryColor,
+                    child: Text('A'),
                   ),
-                  Expanded(
-                    flex: 2,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        Text('Bem vindo, ${user.name}!'),
-                      ],
-                    ),
-                  )
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Text(
+                        'Bem vindo, ${user.name}!',
+                        style: TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.w300),
+                      ),
+                    ],
+                  ),
                 ],
               ),
             ),
-            Container(
+            Expanded(
+              flex: 3,
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
-                  Container(
-                    height: 100,
+                  Expanded(
+                    flex: 1,
                     child: Card(
                       child: Row(
                         children: <Widget>[
                           Expanded(
                             flex: 1,
                             child: CircleAvatar(
+                              radius: 30,
+                              backgroundColor: Theme.of(context).primaryColor,
                               child: Icon(Icons.receipt),
                             ),
                           ),
                           Expanded(
                             flex: 3,
                             child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget>[
-                                Text(
-                                    'Você tem ${user.transactions.length} contribuições!'),
+                                Text('Você tem '),
+                                Text('${user.transactions.length}',
+                                    style: TextStyle(fontSize: 25)),
+                                Text(' contribuições!'),
                               ],
                             ),
                           ),
@@ -76,21 +90,22 @@ class Dash extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Container(
-                    height: 100,
+                  Expanded(
+                    flex: 1,
                     child: Card(
                       child: Row(
                         children: <Widget>[
                           Expanded(
                             flex: 1,
                             child: CircleAvatar(
+                              radius: 30,
+                              backgroundColor: Theme.of(context).primaryColor,
                               child: Icon(Icons.attach_money),
                             ),
                           ),
                           Expanded(
                             flex: 3,
                             child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: <Widget>[
                                 Text('Rendimento atual '),
@@ -117,82 +132,90 @@ class Dash extends StatelessWidget {
                       ),
                     ),
                   ),
-                ],
-              ),
-            ),
-            Container(
-              height: 100,
-              child: Card(
-                child: Row(
-                  children: <Widget>[
-                    Expanded(
-                      flex: 1,
-                      child: CircleAvatar(
-                        child: Icon(Icons.insert_chart),
-                      ),
-                    ),
-                    Expanded(
-                      flex: 3,
+                  Expanded(
+                    flex: 1,
+                    child: Card(
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
-                          Text('Taxa de rendimento'),
-                          Text('${user.participation}%')
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            Container(
-              height: 100,
-              child: Card(
-                child: Row(
-                  children: <Widget>[
-                    Expanded(
-                      flex: 1,
-                      child: CircleAvatar(
-                        child: Icon(Icons.insert_chart),
-                      ),
-                    ),
-                    Expanded(
-                      flex: 3,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          Row(
-                            children: <Widget>[
-                              Text('Ultima contribuição '),
-                              Text(
-                                'R\$',
-                                style: TextStyle(
-                                  fontSize: 25,
-                                  fontWeight: FontWeight.w100,
-                                  fontStyle: FontStyle.italic,
-                                ),
-                              ),
-                              Text(
-                                '${user.accountBalance()}',
-                                style: TextStyle(fontSize: 25),
-                              )
-                            ],
+                          Expanded(
+                            flex: 1,
+                            child: CircleAvatar(
+                              radius: 30,
+                              backgroundColor: Theme.of(context).primaryColor,
+                              child: Icon(Icons.insert_chart),
+                            ),
                           ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: <Widget>[
-                              RaisedButton(
-                                child: Text('Repetir Contribuição'),
-                                onPressed: () {},
-                                color: Theme.of(context).primaryColor,
-                              )
-                            ],
-                          )
+                          Expanded(
+                            flex: 3,
+                            child: Row(
+                              children: <Widget>[
+                                Text('Taxa de rendimento '),
+                                Text('${user.participation}%')
+                              ],
+                            ),
+                          ),
                         ],
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                  Expanded(
+                    flex: 1,
+                    child: Card(
+                      child: Row(
+                        children: <Widget>[
+                          Expanded(
+                            flex: 1,
+                            child: CircleAvatar(
+                              radius: 30,
+                              backgroundColor: Theme.of(context).primaryColor,
+                              child: Icon(Icons.insert_chart),
+                            ),
+                          ),
+                          Expanded(
+                            flex: 3,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                Row(
+                                  children: <Widget>[
+                                    Text('Ultima contribuição '),
+                                    Text(
+                                      'R\$ ',
+                                      style: TextStyle(
+                                        fontSize: 25,
+                                        fontWeight: FontWeight.w100,
+                                        fontStyle: FontStyle.italic,
+                                      ),
+                                    ),
+                                    Text(
+                                      '${user.lastTransactionValue()}',
+                                      style: TextStyle(fontSize: 25),
+                                    )
+                                  ],
+                                ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: <Widget>[
+                                    Container(
+                                      padding: EdgeInsets.only(right: 16),
+                                      child: FlatButton(
+                                        child: Text(
+                                          'Repetir Contribuição',
+                                          style: TextStyle(color: Theme.of(context).primaryColor),
+                                        ),
+                                        onPressed: () {},
+                                      ),
+                                    )
+                                  ],
+                                )
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
           ],
