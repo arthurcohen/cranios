@@ -9,6 +9,7 @@ class User {
   String picture;
   String city;
   double participation;
+  DateTime lastTimeReadNotifications;
   DateTime createdAt;
   DateTime updatedAt;
   bool admin;
@@ -18,7 +19,7 @@ class User {
 
   double lastTransactionValue() => this.transactions.isEmpty ? 0 : this.transactions.last.value;
 
-  User(this.id, this.email, this.username, this.password, this.name, this.picture, this.city, this.participation, this.createdAt, this.updatedAt, this.admin, this.transactions);
+  User(this.id, this.email, this.username, this.password, this.name, this.picture, this.city, this.participation, this.lastTimeReadNotifications, this.createdAt, this.updatedAt, this.admin, this.transactions);
 
   factory User.fromJson(Map<String, dynamic> json) {
     return User(
@@ -30,6 +31,7 @@ class User {
       json['picture'],
       json['city'],
       json['participation'],
+      DateTime.now(),
       json['createdAt'],
       json['updatedAt'],
       json['admin'],
@@ -46,6 +48,7 @@ class User {
       'picture': this.picture,
       'city': this.city,
       'participation': this.participation,
+      'lastTimeReadNotifications': this.lastTimeReadNotifications,
       'createdAt': this.createdAt,
       'updatedAt': this.updatedAt,
       'admin': this.admin
