@@ -1,4 +1,4 @@
-import 'package:cranios/blocs/login_bloc.dart';
+import 'package:cranios/blocs/login/login_bloc.dart';
 import 'package:cranios/models/Transaction.dart';
 import 'package:cranios/models/TransactionsStatus.dart';
 import 'package:cranios/models/User.dart';

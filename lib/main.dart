@@ -1,4 +1,5 @@
-import 'package:cranios/blocs/login_bloc.dart';
+import 'package:cranios/blocs/login/login_bloc.dart';
+import 'package:cranios/blocs/news/news_bloc.dart';
 import 'package:cranios/screens/dashboard/dashboard.dart';
 import 'package:cranios/screens/login.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +18,10 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider<LoginBloc>(
           builder: (context) => LoginBloc(),
-        )
+        ),
+        BlocProvider<NewsBloc>(
+          builder: (context) => NewsBloc(),
+        ),
       ],
       child: MaterialApp(
         routes: {

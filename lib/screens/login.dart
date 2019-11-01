@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:cranios/blocs/login_state.dart';
-import 'package:cranios/blocs/login_bloc.dart';
-import 'package:cranios/blocs/login_event.dart';
+import 'package:cranios/blocs/login/login_state.dart';
+import 'package:cranios/blocs/login/login_bloc.dart';
+import 'package:cranios/blocs/login/login_event.dart';
 
 class Login extends StatelessWidget {
   @override

@@ -18,7 +18,7 @@ class NewsCard extends StatelessWidget {
               width: double.infinity,
               height: 200,
               child: Image.network(
-                newsData.image,
+                newsData.headerImage,
                 fit: BoxFit.fitWidth,
               ),
             ),
@@ -33,7 +33,9 @@ class NewsCard extends StatelessWidget {
               children: <Widget>[
                 FlatButton(
                   child: Text('Ver mais'),
-                  onPressed: () {},
+                  onPressed: () {
+                    
+                  },
                 )
               ],
             )

@@ -1,5 +1,4 @@
 import 'package:cranios/models/User.dart';
-import 'package:cranios/services/login_service.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 

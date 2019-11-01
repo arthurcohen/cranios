@@ -5,7 +5,7 @@ class LoginService {
   Dio dio = ServicesConfig.dio;
 
   Future<Response> login() {
-    Future<Response> response = dio.post("/users/login", data: {'username': 'arthur', 'password': 'arthur'});
+    Future<Response> response = dio.post('/users/login', data: {'username': 'arthur', 'password': 'arthur'});
     return response;
   }
 }

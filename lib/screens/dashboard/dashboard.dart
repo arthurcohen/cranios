@@ -1,6 +1,4 @@
-import 'dart:ffi';
-
-import 'package:cranios/blocs/login_bloc.dart';
+import 'package:cranios/blocs/login/login_bloc.dart';
 import 'package:cranios/components/dashboard/dashboard_tile.dart';
 import 'package:cranios/components/dashboard/welcome_user.dart';
 import 'package:cranios/components/menu.dart';

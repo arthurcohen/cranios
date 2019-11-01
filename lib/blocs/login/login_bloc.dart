@@ -1,9 +1,8 @@
-import 'dart:convert';
 import 'dart:io';
 
 import 'package:bloc/bloc.dart';
-import 'package:cranios/blocs/login_event.dart';
-import 'package:cranios/blocs/login_state.dart';
+import 'package:cranios/blocs/login/login_event.dart';
+import 'package:cranios/blocs/login/login_state.dart';
 import 'package:cranios/models/User.dart';
 import 'dart:async';
 
