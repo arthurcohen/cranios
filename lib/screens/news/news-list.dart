@@ -38,14 +38,18 @@ class NewsList extends StatelessWidget {
             );
             break;
           case NewsLoaded:
-            List<NewsCard> newsList =
-                state.news.map((n) => NewsCard(n)).toList();
-
             child = ListView.builder(
               scrollDirection: Axis.vertical,
-              itemCount: newsList.length,
+              itemCount: state.news.length,
               itemBuilder: (BuildContext context, int index) {
-                return newsList[index];
+                Widget item;
+                if (state.runtimeType == ViewNewsDetails) {
+                  item = Text(state.news[index].header);
+                } else {
+                  item = NewsCard(state.news[index]);
+                }
+
+                return item;
               },
             );
             break;

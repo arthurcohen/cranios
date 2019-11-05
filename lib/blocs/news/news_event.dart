@@ -7,3 +7,9 @@ abstract class NewsEvent extends Equatable {
 }
 
 class LoadNews extends NewsEvent {}
+
+class ViewNewsDetails extends NewsEvent {
+  final int id;
+
+  ViewNewsDetails(this.id): super();
+}

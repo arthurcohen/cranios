@@ -21,8 +21,8 @@ class News {
       json['headerImage'],
       json['image'],
       User.fromJson(json['author']),
-      json['createdAt'],
-      json['updatedAt'],
+      DateTime.now(), // json['createdAt'],
+      DateTime.now()// json['updatedAt'],
     );
   }
 

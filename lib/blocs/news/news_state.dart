@@ -24,3 +24,9 @@ class NewsNotLoaded extends NewsState {
 class NewsErrorWhenLoading extends NewsState {
   NewsErrorWhenLoading(): super(null);
 }
+
+class NewsDetail extends NewsLoaded {
+  final int id;
+
+  NewsDetail(this.id, news): super(news);
+}
